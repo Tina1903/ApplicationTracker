@@ -16,9 +16,9 @@ const JobForm = ({ addJob }) => {
   };
   return (
     <>
-      <Row>
+      <Row style={{ margin: "1rem" }}>
         <h3>Job Form</h3>
-        <Col xs={6}>
+        <Col xs={4}>
           <Form.Group>
             <Form.Label>Company Name</Form.Label>
             <Form.Control
@@ -29,7 +29,7 @@ const JobForm = ({ addJob }) => {
             />
           </Form.Group>
         </Col>
-        <Col xs={6}>
+        <Col xs={4}>
           <Form.Group>
             <Form.Label>Role</Form.Label>
             <Form.Control
@@ -40,7 +40,7 @@ const JobForm = ({ addJob }) => {
             />
           </Form.Group>
         </Col>
-        <Col xs={6}>
+        <Col xs={4}>
           <Form.Group>
             <Form.Label>Status</Form.Label>
             <Form.Select
@@ -54,7 +54,12 @@ const JobForm = ({ addJob }) => {
             </Form.Select>
           </Form.Group>
         </Col>
-        <Button onClick={handleSubmit}>Add Job</Button>
+      </Row>
+      <Row className="justify-content-center align-items-center ">
+        <Col xs="auto">
+          {" "}
+          <Button onClick={handleSubmit}>Add Job</Button>
+        </Col>
       </Row>
     </>
   );
