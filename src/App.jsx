@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState } from "react";
-import JobForm from "./Components/JobForm";
-import JobList from "./Components/JobList";
+import JobList from "./components/JobList";
+import JobForm from "./components/JobForm";
 
 function App() {
   const [jobs, setJobs] = useState([]);
