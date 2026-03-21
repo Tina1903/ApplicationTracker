@@ -2,7 +2,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import JobList from "./components/JobList";
 import JobForm from "./components/JobForm";
-import { createJob, deleteJob, getJobs } from "./api/jobApi";
+import { createJob, deleteJob, getJobs, updateJob } from "./api/jobApi";
 import { Col, Form, Row } from "react-bootstrap";
 
 function App() {
@@ -46,6 +46,19 @@ function App() {
     }
   };
 
+  const updateJobHandler = async (id, newStatus) => {
+    try {
+      await updateJob(id, { status: newStatus });
+      setJobs((prevJobs) =>
+        prevJobs.map((job) =>
+          job.id === id ? { ...job, status: newStatus } : job
+        )
+      );
+    } catch (err) {
+      console.log("Failed to update status ");
+    }
+  };
+
   const deleteJobHandler = async (id) => {
     try {
       await deleteJob(id);
@@ -80,7 +93,12 @@ function App() {
                 marginBottom: "3rem",
               }}
               value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (/^[a-zA-Z\s]*$/.test(value)) {
+                  setSearchText(value);
+                }
+              }}
               placeholder="Search Company"
             />
           </Col>
@@ -144,7 +162,21 @@ function App() {
           </Col>
         </Row>
         <JobForm addJob={addJob} />
-        <JobList jobs={filteredJobs} deleteJob={deleteJobHandler} />
+        {jobs.length === 0 ? (
+          <p style={{ textAlign: "center", marginTop: "2rem" }}>
+            No jobs added yet
+          </p>
+        ) : filteredJobs.length === 0 ? (
+          <p style={{ textAlign: "center", marginTop: "2rem" }}>
+            No matching jobs found{" "}
+          </p>
+        ) : (
+          <JobList
+            jobs={filteredJobs}
+            deleteJob={deleteJobHandler}
+            updateJobStatus={updateJobHandler}
+          />
+        )}
       </Row>
     </>
   );
