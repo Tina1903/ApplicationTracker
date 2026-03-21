@@ -1,10 +1,8 @@
 {
   "jobs": [
     {
-      "id": "1773562536806",
-      "company": "Abc",
-      "role": "dfknks",
-      "status": "Applied"
+      "status": "Interview",
+      "id": "1773562536806"
     },
     {
       "id": "1773562571922",
@@ -25,10 +23,8 @@
       "status": "Applied"
     },
     {
-      "id": 1774086675901,
-      "company": "CTS",
-      "role": "React Developer",
-      "status": "Applied"
+      "status": "Rejected",
+      "id": "1774086675901"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
