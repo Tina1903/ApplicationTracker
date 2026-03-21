@@ -5,7 +5,7 @@ import JobForm from "./components/JobForm";
 import { createJob, deleteJob, getJobs, updateJob } from "./api/jobApi";
 import { Col, Form, Row } from "react-bootstrap";
 
-function App() {
+const App = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -180,6 +180,6 @@ function App() {
       </Row>
     </>
   );
-}
+};
 
 export default App;
