@@ -47,7 +47,8 @@ function App() {
 
   const updateJobHandler = async (id, newStatus) => {
     try {
-      await updateJob(id, { status: newStatus });
+      const existingJob = jobs.find((job) => job.id === id);
+      await updateJob(id, { ...existingJob, status: newStatus });
       setJobs((prevJobs) =>
         prevJobs.map((job) =>
           job.id === id ? { ...job, status: newStatus } : job
