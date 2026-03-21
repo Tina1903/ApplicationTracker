@@ -39,7 +39,7 @@ function App() {
   const addJob = async (newJob) => {
     try {
       const createdJob = await createJob(newJob);
-      console.log(createdJob);
+      // console.log(createdJob);
       setJobs((prevJobs) => [...prevJobs, createdJob]);
     } catch (err) {
       console.log("Failed to add job");
