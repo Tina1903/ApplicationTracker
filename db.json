@@ -1,10 +1,6 @@
 {
   "jobs": [
     {
-      "status": "Interview",
-      "id": "1773562536806"
-    },
-    {
       "id": "1773562571922",
       "company": "bfvdsfm s",
       "role": "fnkdjfksd f",
@@ -14,7 +10,7 @@
       "id": "1774086341725",
       "company": "Tcs",
       "role": "Cloud Engineer",
-      "status": "Interview"
+      "status": "Applied"
     },
     {
       "id": "1774086358887",
@@ -23,8 +19,10 @@
       "status": "Applied"
     },
     {
-      "status": "Rejected",
-      "id": "1774086675901"
+      "id": "1774091624819",
+      "company": "Infosys",
+      "role": "devops engineer",
+      "status": "Applied"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
