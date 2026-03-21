@@ -8,7 +8,7 @@ const JobForm = ({ addJob }) => {
 
   const handleSubmit = () => {
     const newJob = { id: Date.now(), company, role, status };
-    console.log(newJob);
+    // console.log(newJob);
     addJob(newJob);
     setCompany("");
     setRole("");
