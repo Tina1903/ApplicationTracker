@@ -11,6 +11,24 @@
       "company": "bfvdsfm s",
       "role": "fnkdjfksd f",
       "status": "Interview"
+    },
+    {
+      "id": "1774086341725",
+      "company": "Tcs",
+      "role": "Cloud Engineer",
+      "status": "Interview"
+    },
+    {
+      "id": "1774086358887",
+      "company": "Wipro",
+      "role": "Associate",
+      "status": "Applied"
+    },
+    {
+      "id": 1774086675901,
+      "company": "CTS",
+      "role": "React Developer",
+      "status": "Applied"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
