@@ -28,14 +28,13 @@ function App() {
 
   const filteredJobs = jobs
     .filter((job) =>
-      job.company.toLowerCase().includes(searchText.toLowerCase())
+      (job.company || "").toLowerCase().includes(searchText.toLowerCase())
     )
     .filter((job) =>
       statusFilter === "All"
         ? true
-        : job.status.toLowerCase() === statusFilter.toLowerCase()
+        : (job.status || "").toLowerCase() === statusFilter.toLowerCase()
     );
-
   const addJob = async (newJob) => {
     try {
       const createdJob = await createJob(newJob);
