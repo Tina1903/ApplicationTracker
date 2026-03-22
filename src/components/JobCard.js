@@ -11,18 +11,15 @@ const JobCard = ({ job, deleteJob, updateJobStatus }) => {
   return (
     <>
       <Row
+        className="card-custom fade-in"
         style={{
-          border: "1px solid #eee",
-          borderRadius: "10px",
           margin: "10px 0",
-          padding: "15px",
-          boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
           alignItems: "center",
         }}
       >
         <Col md={8}>
-          <h3>{job?.company}</h3>
-          <p>{job?.role}</p>
+          <h3 style={{ marginBottom: "5px" }}>{job?.company}</h3>
+          <p style={{ marginBottom: "5px" }}>{job?.role}</p>
           {!isEditing ? (
             <p>{job?.status}</p>
           ) : (
