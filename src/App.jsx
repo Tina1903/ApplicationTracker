@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import JobList from "./components/JobList";
 import JobForm from "./components/JobForm";
 import { createJob, deleteJob, getJobs, updateJob } from "./api/jobApi";
-import { Col, Form, Row } from "react-bootstrap";
+import { Card, Col, Container, Form, Row } from "react-bootstrap";
 
 const App = () => {
   const [jobs, setJobs] = useState([]);
@@ -72,112 +72,142 @@ const App = () => {
   if (error) return <p>{error}</p>;
   return (
     <>
-      <Row style={{ margin: "1rem" }}>
-        <h1
-          style={{
-            textAlign: "center",
-            marginBottom: "3rem",
-          }}
-        >
-          Job Application Tracker
-        </h1>
-        <Row>
+      <Container style={{ marginTop: "20px" }}>
+        <Row className="mb-4">
           <Col>
-            <Form.Control
-              type="text"
+            <h1
               style={{
-                width: "80%",
-                alignItems: "center",
-                padding: "0.5rem",
-                marginLeft: "3rem",
-                marginBottom: "3rem",
+                textAlign: "center",
               }}
-              value={searchText}
-              onChange={(e) => {
-                const value = e.target.value;
-                if (/^[a-zA-Z\s]*$/.test(value)) {
-                  setSearchText(value);
-                }
-              }}
-              placeholder="Search Company"
-            />
+            >
+              Job Application Tracker
+            </h1>
           </Col>
-        </Row>
-        <Row className="justify-content-center align-items-center">
-          <Col xs="auto">
-            {" "}
-            <span
+          <Row className="mb-4 justify-content-center">
+            <Col md={6}>
+              <Form.Control
+                type="text"
+                style={{
+                  width: "80%",
+                  alignItems: "center",
+                  padding: "0.5rem",
+                  marginLeft: "3rem",
+                  marginBottom: "3rem",
+                }}
+                value={searchText}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (/^[a-zA-Z\s]*$/.test(value)) {
+                    setSearchText(value);
+                  }
+                }}
+                placeholder="Search Company"
+              />
+            </Col>
+          </Row>
+          <Row className="mb-4 text-center">
+            <Col
               style={{
                 cursor: "pointer",
-                fontWeight: statusFilter === "All" ? "bold" : "normal",
-                margin: "1rem",
               }}
               onClick={() => setStatusFilter("All")}
             >
-              All:<strong> {jobs?.length}</strong>
-            </span>
-            &nbsp;
-            <span
+              <Card
+                style={{
+                  padding: "10px",
+                  backgroundColor: statusFilter === "All" ? "#333" : "#f1f1f1",
+                  color: statusFilter === "All" ? "white" : "black",
+                }}
+              >
+                {" "}
+                <p>All</p>
+                <h4>{jobs?.length}</h4>
+              </Card>
+            </Col>
+            <Col
               style={{
                 cursor: "pointer",
-                fontWeight: statusFilter === "Applied" ? "bold" : "normal",
-                margin: "1rem",
               }}
               onClick={() => setStatusFilter("Applied")}
             >
-              Applied{" "}
-              <strong>
-                {jobs.filter((j) => j.status === "Applied").length}
-              </strong>{" "}
-            </span>
-            &nbsp;
-            <span
+              <Card
+                style={{
+                  padding: "10px",
+                  backgroundColor:
+                    statusFilter === "Applied" ? "#0d6efd" : "#e7f0ff",
+                  color: statusFilter === "Applied" ? "white" : "#0d6efd",
+                }}
+              >
+                <p> Applied</p>
+                <h4>
+                  {jobs.filter((j) => j.status === "Applied").length}
+                </h4>{" "}
+              </Card>
+            </Col>
+            <Col
               style={{
                 cursor: "pointer",
-                fontWeight: statusFilter === "Interview" ? "bold" : "normal",
-                margin: "1rem",
               }}
               onClick={() => setStatusFilter("Interview")}
             >
-              Interview{" "}
-              <strong>
-                {jobs.filter((j) => j.status === "Interview").length}
-              </strong>
-            </span>
-            &nbsp;
-            <span
+              {" "}
+              <Card
+                style={{
+                  padding: "15px",
+                  backgroundColor:
+                    statusFilter === "Interview" ? "#ffc107" : "#fff3cd",
+                }}
+              >
+                <p> Interview</p>
+                <h4>{jobs.filter((j) => j.status === "Interview").length}</h4>
+              </Card>
+            </Col>
+
+            <Col
               style={{
                 cursor: "pointer",
-                fontWeight: statusFilter === "Rejected" ? "bold" : "normal",
-                margin: "1rem",
               }}
               onClick={() => setStatusFilter("Rejected")}
             >
-              Rejected{" "}
-              <strong>
-                {jobs.filter((j) => j.status === "Rejected").length}
-              </strong>
-            </span>
-            &nbsp;
-          </Col>
+              <Card
+                style={{
+                  padding: "15px",
+                  backgroundColor:
+                    statusFilter === "Rejected" ? "#dc3545" : "#f8d7da",
+                  color: statusFilter === "Rejected" ? "white" : "#dc3545",
+                }}
+              >
+                <p> Rejected</p>
+                <h4>{jobs.filter((j) => j.status === "Rejected").length}</h4>
+              </Card>
+            </Col>
+          </Row>
+          <Row className="mb-4">
+            <Col>
+              <JobForm addJob={addJob} />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              {jobs.length === 0 ? (
+                <p style={{ textAlign: "center", marginTop: "2rem" }}>
+                  No jobs added yet
+                </p>
+              ) : filteredJobs.length === 0 ? (
+                <p style={{ textAlign: "center", marginTop: "2rem" }}>
+                  No matching jobs found{" "}
+                </p>
+              ) : (
+                <JobList
+                  jobs={filteredJobs}
+                  deleteJob={deleteJobHandler}
+                  updateJobStatus={updateJobHandler}
+                />
+              )}
+            </Col>
+          </Row>
         </Row>
-        <JobForm addJob={addJob} />
-        {jobs.length === 0 ? (
-          <p style={{ textAlign: "center", marginTop: "2rem" }}>
-            No jobs added yet
-          </p>
-        ) : filteredJobs.length === 0 ? (
-          <p style={{ textAlign: "center", marginTop: "2rem" }}>
-            No matching jobs found{" "}
-          </p>
-        ) : (
-          <JobList
-            jobs={filteredJobs}
-            deleteJob={deleteJobHandler}
-            updateJobStatus={updateJobHandler}
-          />
-        )}
-      </Row>
+      </Container>
     </>
   );
 };
