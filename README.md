@@ -85,4 +85,4 @@ npm start
 
 ## 📬 Contact
 
-Feel free to connect with me for opportunities or feedback!
+Email: nigithapaulchamyraj@gmail.com
