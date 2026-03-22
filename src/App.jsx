@@ -1,9 +1,9 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import JobList from "./components/JobList";
-import JobForm from "./components/JobForm";
 import { createJob, deleteJob, getJobs, updateJob } from "./api/jobApi";
 import { Card, Col, Container, Form, Row } from "react-bootstrap";
+import JobForm from "./components/JobForm";
+import JobList from "./components/JobList";
 
 const App = () => {
   const [jobs, setJobs] = useState([]);
