@@ -144,9 +144,13 @@ const App = () => {
               </Col>
             ))}
           </Row>
+          <div className="section-divider"></div>
           <Row className="mb-4">
             <Col xs={12}>
               <div className="card-custom fade-in">
+                <h5 style={{ color: "#6b7280", marginBottom: "10px" }}>
+                  Add New Job
+                </h5>
                 <JobForm addJob={addJob} />
               </div>
             </Col>
