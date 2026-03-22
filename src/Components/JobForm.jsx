@@ -8,7 +8,7 @@ const JobForm = ({ addJob }) => {
 
   const handleSubmit = () => {
     const newJob = { id: Date.now(), company, role, status };
-    console.log(newJob);
+    // console.log(newJob);
     addJob(newJob);
     setCompany("");
     setRole("");
@@ -16,8 +16,7 @@ const JobForm = ({ addJob }) => {
   };
   return (
     <>
-      <Row style={{ margin: "1rem" }}>
-        <h3>Job Form</h3>
+      <Row style={{ margin: "1rem", marginBottom: "3rem" }}>
         <Col xs={4}>
           <Form.Group>
             <Form.Label>Company Name</Form.Label>

@@ -1,0 +1,29 @@
+{
+  "jobs": [
+    {
+      "id": "1774086341725",
+      "company": "Tcs",
+      "role": "Cloud Engineer",
+      "status": "Applied"
+    },
+    {
+      "id": "1774086358887",
+      "company": "Wipro",
+      "role": "Associate",
+      "status": "Applied"
+    },
+    {
+      "id": "1774091624819",
+      "company": "Infosys",
+      "role": "devops engineer",
+      "status": "Applied"
+    },
+    {
+      "id": 1774171709767,
+      "company": "Google",
+      "role": "Cloud Engineer",
+      "status": "Interview"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

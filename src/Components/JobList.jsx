@@ -1,16 +1,17 @@
 import React from "react";
 import JobCard from "./JobCard";
 
-const JobList = ({ jobs, deleteJob }) => {
+const JobList = ({ jobs, deleteJob, updateJobStatus }) => {
   return (
     <>
-      {jobs.length === 0 ? (
-        <p>No jobs added yet</p>
-      ) : (
-        jobs?.map((job) => (
-          <JobCard key={job.id} job={job} deleteJob={deleteJob} />
-        ))
-      )}
+      {jobs?.map((job) => (
+        <JobCard
+          key={job.id}
+          job={job}
+          deleteJob={deleteJob}
+          updateJobStatus={updateJobStatus}
+        />
+      ))}
     </>
   );
 };
