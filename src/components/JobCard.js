@@ -21,7 +21,21 @@ const JobCard = ({ job, deleteJob, updateJobStatus }) => {
           <h3 style={{ marginBottom: "5px" }}>{job?.company}</h3>
           <p style={{ marginBottom: "5px" }}>{job?.role}</p>
           {!isEditing ? (
-            <p>{job?.status}</p>
+            <p>
+              {" "}
+              <span
+                key={job.status}
+                className={`status-badge status-animate ${
+                  job?.status === "Applied"
+                    ? "badge-applied"
+                    : job?.status === "Interview"
+                    ? "badge-interview"
+                    : "badge-rejected"
+                }`}
+              >
+                {job?.status}
+              </span>
+            </p>
           ) : (
             <Form.Select
               value={job.status}
@@ -38,10 +52,13 @@ const JobCard = ({ job, deleteJob, updateJobStatus }) => {
           <Button
             style={{ margin: "0.5rem" }}
             onClick={() => setIsEditing((prev) => !prev)}
+            className="edit-btn"
           >
             Edit
           </Button>
-          <Button onClick={() => deleteJob(job.id)}>Delete</Button>
+          <Button className="delete-btn" onClick={() => deleteJob(job.id)}>
+            Delete
+          </Button>
         </Col>
       </Row>
     </>
