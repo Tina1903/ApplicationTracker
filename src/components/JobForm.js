@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const JobForm = ({ addJob }) => {
   const [company, setCompany] = useState("");
@@ -8,6 +9,7 @@ const JobForm = ({ addJob }) => {
 
   const handleSubmit = () => {
     const newJob = { id: Date.now(), company, role, status };
+    toast.success("Job added successfully ");
     // console.log(newJob);
     addJob(newJob);
     setCompany("");
