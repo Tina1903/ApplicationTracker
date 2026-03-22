@@ -90,7 +90,7 @@ const App = () => {
               Job Application Tracker
             </h2>
           </Col>
-          <Row className="mb-4 mt-5 justify-content-center">
+          <Row className="mb-2 mt-3 justify-content-center">
             <Col xs={12} md={6}>
               <Form.Control
                 type="text"
@@ -99,7 +99,7 @@ const App = () => {
                   alignItems: "center",
                   padding: "0.5rem",
                   marginLeft: "3rem",
-                  marginBottom: "3rem",
+                  marginBottom: "1rem",
                 }}
                 value={searchText}
                 onChange={(e) => {
@@ -112,6 +112,7 @@ const App = () => {
               />
             </Col>
           </Row>
+
           <Row className="mb-4 text-center g-3">
             {["All", "Applied", "Interview", "Rejected"].map((status) => (
               <Col xs={6} md={3} key={status}>
@@ -150,6 +151,7 @@ const App = () => {
               </div>
             </Col>
           </Row>
+
           <Row>
             <Col xs={12}>
               {jobs.length === 0 ? (
