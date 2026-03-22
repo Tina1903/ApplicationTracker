@@ -1,6 +1,40 @@
 # 📌 Application Tracker
 
-A simple and efficient web application to track job applications, manage statuses, and stay organized during your job search.
+A clean and intuitive web application to track job applications, manage statuses, and stay organized during your job search.
+🔗 Built to simplify job tracking with a modern UI and efficient workflow.
+---
+
+## 🚀 Live Demo
+
+👉 https://application-tracker-bnsd.vercel.app/
+
+---
+
+## ✨ Key Highlights
+
+* 🎯 Interactive dashboard with real-time job status tracking
+* 🔍 Search and filter functionality for quick access
+* 🏷️ Status badges for clear visual tracking
+* ⚡ Smooth UI with responsive design
+* 🎨 Clean and modern user interface
+
+---
+
+## 📸 Screenshots
+
+### 📊 Dashboard
+<img src="https://github.com/user-attachments/assets/c1276100-fca6-45ad-a5ee-4eb27804882b" />
+
+### ➕ Job Form
+<img src="https://github.com/user-attachments/assets/08873234-72e0-4580-a89a-55ea50a28adf" />
+
+### 📋 Jobs List
+<img src="https://github.com/user-attachments/assets/21214adf-64f2-4eac-8de0-d445e0def895" />
+
+### 🖥️ Full View
+<img src="https://github.com/user-attachments/assets/3bc1e580-e090-40d3-b127-dc8e57a9ce84" />
+
+
 
 ---
 
@@ -9,26 +43,19 @@ A simple and efficient web application to track job applications, manage statuse
 * ➕ Add new job applications
 * 📝 Edit job details
 * ❌ Delete jobs
-* 🔄 Update job status (Applied, Interview, Offer, Rejected)
-* 📊 Clean and responsive UI
+*  🔄 Update job status dynamically (Applied, Interview, Rejected)
+* 📊 Dashboard overview with counts
 
 ---
 
 ## 🛠️ Tech Stack
 
-* ⚛️ React.js
-* 🎨 CSS / Bootstrap (if used)
-* 🌐 REST API (if applicable)
-* ☁️ Deployed on Vercel
-
+- ⚛️ React.js (Frontend)
+- 🎨 CSS / Bootstrap (Styling)
+- 🌐 REST API (Data handling)
+- ☁️ Vercel (Deployment)
 ---
 
-
-## 🌍 Live Demo
-
-👉 https://application-tracker-bnsd.vercel.app/
-
----
 ## ⚙️ Installation & Setup
 
 ```bash
@@ -43,7 +70,19 @@ npm install
 
 # Start the development server
 npm start
+```
 
 ---
 
+## 💡 What I Learned
 
+* Building reusable React components
+* Managing state and API integration
+* Designing clean and user-friendly UI
+* Improving UX with small but impactful features
+
+---
+
+## 📬 Contact
+
+Feel free to connect with me for opportunities or feedback!
