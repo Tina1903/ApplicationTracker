@@ -4,6 +4,8 @@ import { createJob, deleteJob, getJobs, updateJob } from "./api/jobApi";
 import { Card, Col, Container, Form, Row } from "react-bootstrap";
 import JobForm from "./components/JobForm";
 import JobList from "./components/JobList";
+import Loader from "./components/Loader";
+import { toast } from "react-toastify";
 
 const App = () => {
   const [jobs, setJobs] = useState([]);
@@ -41,7 +43,7 @@ const App = () => {
       // console.log(createdJob);
       setJobs((prevJobs) => [...prevJobs, createdJob]);
     } catch (err) {
-      console.log("Failed to add job");
+      toast.error("Failed to add job");
     }
   };
 
@@ -54,8 +56,9 @@ const App = () => {
           job.id === id ? { ...job, status: newStatus } : job
         )
       );
+      toast.success("Status updated successfully");
     } catch (err) {
-      console.log("Failed to update status ");
+      toast.error("Failed to update status ");
     }
   };
 
@@ -63,28 +66,32 @@ const App = () => {
     try {
       await deleteJob(id);
       setJobs((prevJobs) => prevJobs.filter((job) => job.id !== id));
+      toast.success("Job deleted Successfully");
     } catch (err) {
-      console.error("Error deleting job");
+      toast.error("Error deleting job");
     }
   };
 
-  if (loading) return <p>Loading jobs...</p>;
+  if (loading) return <Loader />;
   if (error) return <p>{error}</p>;
   return (
     <>
-      <Container style={{ marginTop: "20px" }}>
+      <Container className="app-container">
         <Row className="mb-4">
           <Col>
-            <h1
+            <h2
               style={{
                 textAlign: "center",
+                background: "linear-gradient(90deg, #4facfe, #00f2fe)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
               }}
             >
               Job Application Tracker
-            </h1>
+            </h2>
           </Col>
-          <Row className="mb-4 justify-content-center">
-            <Col md={6}>
+          <Row className="mb-4 mt-5 justify-content-center">
+            <Col xs={12} md={6}>
               <Form.Control
                 type="text"
                 style={{
@@ -105,98 +112,50 @@ const App = () => {
               />
             </Col>
           </Row>
-          <Row className="mb-4 text-center">
-            <Col
-              style={{
-                cursor: "pointer",
-              }}
-              onClick={() => setStatusFilter("All")}
-            >
-              <Card
-                style={{
-                  padding: "10px",
-                  backgroundColor: statusFilter === "All" ? "#333" : "#f1f1f1",
-                  color: statusFilter === "All" ? "white" : "black",
-                }}
-              >
-                {" "}
-                <p>All</p>
-                <h4>{jobs?.length}</h4>
-              </Card>
-            </Col>
-            <Col
-              style={{
-                cursor: "pointer",
-              }}
-              onClick={() => setStatusFilter("Applied")}
-            >
-              <Card
-                style={{
-                  padding: "10px",
-                  backgroundColor:
-                    statusFilter === "Applied" ? "#0d6efd" : "#e7f0ff",
-                  color: statusFilter === "Applied" ? "white" : "#0d6efd",
-                }}
-              >
-                <p> Applied</p>
-                <h4>
-                  {jobs.filter((j) => j.status === "Applied").length}
-                </h4>{" "}
-              </Card>
-            </Col>
-            <Col
-              style={{
-                cursor: "pointer",
-              }}
-              onClick={() => setStatusFilter("Interview")}
-            >
-              {" "}
-              <Card
-                style={{
-                  padding: "15px",
-                  backgroundColor:
-                    statusFilter === "Interview" ? "#ffc107" : "#fff3cd",
-                }}
-              >
-                <p> Interview</p>
-                <h4>{jobs.filter((j) => j.status === "Interview").length}</h4>
-              </Card>
-            </Col>
-
-            <Col
-              style={{
-                cursor: "pointer",
-              }}
-              onClick={() => setStatusFilter("Rejected")}
-            >
-              <Card
-                style={{
-                  padding: "15px",
-                  backgroundColor:
-                    statusFilter === "Rejected" ? "#dc3545" : "#f8d7da",
-                  color: statusFilter === "Rejected" ? "white" : "#dc3545",
-                }}
-              >
-                <p> Rejected</p>
-                <h4>{jobs.filter((j) => j.status === "Rejected").length}</h4>
-              </Card>
-            </Col>
+          <Row className="mb-4 text-center g-3">
+            {["All", "Applied", "Interview", "Rejected"].map((status) => (
+              <Col xs={6} md={3} key={status}>
+                <Card
+                  onClick={() => setStatusFilter(status)}
+                  className={`dashboard-card ${
+                    status === "All"
+                      ? "dashboard-all"
+                      : status === "Applied"
+                      ? "dashboard-applied"
+                      : status === "Interview"
+                      ? "dashboard-interview"
+                      : "dashboard-rejected"
+                  }`}
+                  style={{
+                    cursor: "pointer",
+                    padding: "10px",
+                  }}
+                >
+                  <Card.Body style={{ padding: "10px" }}>
+                    <p>{status}</p>
+                    <h5>
+                      {status === "All"
+                        ? jobs.length
+                        : jobs.filter((j) => j.status === status).length}
+                    </h5>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
           </Row>
           <Row className="mb-4">
-            <Col>
-              <JobForm addJob={addJob} />
+            <Col xs={12}>
+              <div className="card-custom fade-in">
+                <JobForm addJob={addJob} />
+              </div>
             </Col>
           </Row>
           <Row>
-            <Col>
+            <Col xs={12}>
               {jobs.length === 0 ? (
-                <p style={{ textAlign: "center", marginTop: "2rem" }}>
-                  No jobs added yet
-                </p>
+                <p className="text-center mt-3">No jobs yet. Start applying!</p>
               ) : filteredJobs.length === 0 ? (
-                <p style={{ textAlign: "center", marginTop: "2rem" }}>
-                  No matching jobs found{" "}
-                </p>
+                <p className="text-center mt-3">No matching jobs found </p>
               ) : (
                 <JobList
                   jobs={filteredJobs}
