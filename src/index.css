@@ -6,7 +6,8 @@
 
 body {
   font-family: "Inter", sans-serif;
-  background: #f5f7fb;
+  background: linear-gradient(135deg, #e0f2fe, #eef2ff, #f8fafc);
+  min-height: 100vh;
   color: #333;
 }
 
@@ -121,22 +122,22 @@ button:active {
 
 /* 🎨 Dashboard colors */
 .dashboard-all {
-  background: #eef2ff;
+  background: #eef2ff !important;
   color: #4f46e5;
 }
 
 .dashboard-applied {
-  background: #e0f2fe;
+  background: #e0f2fe !important;
   color: #0284c7;
 }
 
 .dashboard-interview {
-  background: #fef3c7;
+  background: #fef3c7 !important;
   color: #d97706;
 }
 
 .dashboard-rejected {
-  background: #fee2e2;
+  background: #fee2e2 !important;
   color: #dc2626;
 }
 
@@ -148,4 +149,75 @@ button:active {
 .dashboard-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-card h5 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.edit-btn {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+.edit-btn:hover {
+  background: #bae6fd;
+}
+
+.delete-btn {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.delete-btn:hover {
+  background: #fecaca;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Status colors */
+.badge-applied {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+.badge-interview {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.badge-rejected {
+  background: #fee2e2;
+  color: #dc2626;
+}
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* 👇 animation */
+.status-animate {
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
