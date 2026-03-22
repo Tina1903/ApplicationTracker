@@ -1,12 +1,6 @@
 {
   "jobs": [
     {
-      "id": "1773562571922",
-      "company": "bfvdsfm s",
-      "role": "fnkdjfksd f",
-      "status": "Interview"
-    },
-    {
       "id": "1774086341725",
       "company": "Tcs",
       "role": "Cloud Engineer",
@@ -23,6 +17,12 @@
       "company": "Infosys",
       "role": "devops engineer",
       "status": "Applied"
+    },
+    {
+      "id": 1774171709767,
+      "company": "Google",
+      "role": "Cloud Engineer",
+      "status": "Interview"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
