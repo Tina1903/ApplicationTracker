@@ -47,18 +47,3 @@ npm start
 ---
 
 
-## 📂 Project Structure
-
-```
-ApplicationTracker/
-│── src/
-│   ├── components/
-│   ├── services/
-│   ├── App.js
-│── public/
-│── package.json
-```
-
----
-
----
