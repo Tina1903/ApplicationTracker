@@ -2,10 +2,11 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import { createJob, deleteJob, getJobs, updateJob } from "./api/jobApi";
 import { Card, Col, Container, Form, Row } from "react-bootstrap";
-import JobForm from "./components/JobForm";
-import JobList from "./components/JobList";
-import Loader from "./components/Loader";
+
 import { toast } from "react-toastify";
+import Loader from "./Screens/Loader";
+import JobForm from "./Screens/JobForm";
+import JobList from "./Screens/JobList";
 
 const App = () => {
   const [jobs, setJobs] = useState([]);
@@ -69,6 +70,28 @@ const App = () => {
       toast.success("Job deleted Successfully");
     } catch (err) {
       toast.error("Error deleting job");
+    }
+  };
+
+  const editJobHandler = async (id, updatedJob) => {
+    try {
+      const existingJob = jobs.find((job) => job.id === id);
+
+      if (!existingJob) {
+        toast.error("Job not found");
+        return;
+      }
+
+      await updateJob(id, { ...existingJob, ...updatedJob });
+
+      setJobs((prevJobs) =>
+        prevJobs.map((job) => (job.id === id ? { ...job, ...updatedJob } : job))
+      );
+
+      toast.success("Job updated successfully");
+    } catch (err) {
+      console.error("Edit job error:", err);
+      toast.error("Failed to update job");
     }
   };
 
@@ -167,6 +190,7 @@ const App = () => {
                   jobs={filteredJobs}
                   deleteJob={deleteJobHandler}
                   updateJobStatus={updateJobHandler}
+                  editJob={editJobHandler}
                 />
               )}
             </Col>
