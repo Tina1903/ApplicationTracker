@@ -1,30 +1,86 @@
 import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 
-const JobCard = ({ job, deleteJob, updateJobStatus }) => {
+const JobCard = ({ job, deleteJob, updateJobStatus, editJob }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const handleStatusChange = (e) => {
-    const newStatus = e.target.value;
-    updateJobStatus(job.id, newStatus);
+  const [formData, setFormData] = useState({
+    company: job?.company || "",
+    role: job?.role || "",
+    status: job?.status || "Applied",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSave = async () => {
+    if (!formData.company.trim() || !formData.role.trim()) {
+      return;
+    }
+
+    await editJob(job.id, formData);
     setIsEditing(false);
   };
+
+  const handleCancel = () => {
+    setFormData({
+      company: job?.company || "",
+      role: job?.role || "",
+      status: job?.status || "Applied",
+    });
+    setIsEditing(false);
+  };
+
+  const handleStatusChange = (e) => {
+    updateJobStatus(job.id, e.target.value);
+  };
+
   return (
-    <>
-      <Row
-        className="card-custom fade-in"
-        style={{
-          margin: "10px 0",
-          alignItems: "center",
-        }}
-      >
-        <Col md={8}>
-          <h3 style={{ marginBottom: "5px" }}>{job?.company}</h3>
-          <p style={{ marginBottom: "5px" }}>{job?.role}</p>
-          {!isEditing ? (
+    <Row
+      className="card-custom fade-in"
+      style={{ margin: "10px 0", alignItems: "center" }}
+    >
+      <Col md={8}>
+        {isEditing ? (
+          <>
+            <Form.Control
+              name="company"
+              value={formData.company}
+              onChange={handleChange}
+              placeholder="Company name"
+              className="mb-2"
+            />
+
+            <Form.Control
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+              placeholder="Job role"
+              className="mb-2"
+            />
+
+            <Form.Select
+              name="status"
+              value={formData.status}
+              onChange={handleChange}
+              className="mb-2"
+              style={{ width: "200px" }}
+            >
+              <option value="Applied">Applied</option>
+              <option value="Interview">Interview</option>
+              <option value="Offer">Offer</option>
+              <option value="Rejected">Rejected</option>
+            </Form.Select>
+          </>
+        ) : (
+          <>
+            <h3 style={{ marginBottom: "5px" }}>{job?.company}</h3>
+            <p style={{ marginBottom: "5px" }}>{job?.role}</p>
             <p>
-              {" "}
               <span
-                key={job.status}
                 className={`status-badge status-animate ${
                   job?.status === "Applied"
                     ? "badge-applied"
@@ -36,32 +92,44 @@ const JobCard = ({ job, deleteJob, updateJobStatus }) => {
                 {job?.status}
               </span>
             </p>
-          ) : (
-            <Form.Select
-              value={job.status}
-              onChange={handleStatusChange}
-              style={{ width: "200px", marginBottom: "10px" }}
+          </>
+        )}
+      </Col>
+
+      <Col md={4} style={{ textAlign: "right" }}>
+        {isEditing ? (
+          <>
+            <Button
+              className="edit-btn"
+              style={{ margin: "0.5rem" }}
+              onClick={handleSave}
             >
-              <option value="Applied">Applied</option>
-              <option value="Interview">Interview</option>
-              <option value="Rejected">Rejected</option>
-            </Form.Select>
-          )}
-        </Col>
-        <Col md={4} style={{ textAlign: "right" }}>
-          <Button
-            style={{ margin: "0.5rem" }}
-            onClick={() => setIsEditing((prev) => !prev)}
-            className="edit-btn"
-          >
-            Edit
-          </Button>
-          <Button className="delete-btn" onClick={() => deleteJob(job.id)}>
-            Delete
-          </Button>
-        </Col>
-      </Row>
-    </>
+              Save
+            </Button>
+            <Button
+              variant="secondary"
+              style={{ margin: "0.5rem" }}
+              onClick={handleCancel}
+            >
+              Cancel
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button
+              className="edit-btn"
+              style={{ margin: "0.5rem" }}
+              onClick={() => setIsEditing(true)}
+            >
+              Edit
+            </Button>
+            <Button className="delete-btn" onClick={() => deleteJob(job.id)}>
+              Delete
+            </Button>
+          </>
+        )}
+      </Col>
+    </Row>
   );
 };
 
