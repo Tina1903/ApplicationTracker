@@ -24,10 +24,17 @@ export const updateJob = async (id, updatedData) => {
     `https://applicationtracker-backend.onrender.com/jobs/${id}`,
     {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(updatedData),
     }
   );
+
+  if (!res.ok) {
+    throw new Error(`Failed to update job: ${res.status}`);
+  }
+
   return res.json();
 };
 
