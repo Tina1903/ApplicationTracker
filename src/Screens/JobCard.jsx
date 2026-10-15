@@ -1,0 +1,68 @@
+import React, { useState } from "react";
+import { Button, Col, Form, Row } from "react-bootstrap";
+
+const JobCard = ({ job, deleteJob, updateJobStatus }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const handleStatusChange = (e) => {
+    const newStatus = e.target.value;
+    updateJobStatus(job.id, newStatus);
+    setIsEditing(false);
+  };
+  return (
+    <>
+      <Row
+        className="card-custom fade-in"
+        style={{
+          margin: "10px 0",
+          alignItems: "center",
+        }}
+      >
+        <Col md={8}>
+          <h3 style={{ marginBottom: "5px" }}>{job?.company}</h3>
+          <p style={{ marginBottom: "5px" }}>{job?.role}</p>
+          {!isEditing ? (
+            <p>
+              {" "}
+              <span
+                key={job.status}
+                className={`status-badge status-animate ${
+                  job?.status === "Applied"
+                    ? "badge-applied"
+                    : job?.status === "Interview"
+                    ? "badge-interview"
+                    : "badge-rejected"
+                }`}
+              >
+                {job?.status}
+              </span>
+            </p>
+          ) : (
+            <Form.Select
+              value={job.status}
+              onChange={handleStatusChange}
+              style={{ width: "200px", marginBottom: "10px" }}
+            >
+              <option value="Applied">Applied</option>
+              <option value="Interview">Interview</option>
+              <option value="Rejected">Rejected</option>
+            </Form.Select>
+          )}
+        </Col>
+        <Col md={4} style={{ textAlign: "right" }}>
+          <Button
+            style={{ margin: "0.5rem" }}
+            onClick={() => setIsEditing((prev) => !prev)}
+            className="edit-btn"
+          >
+            Edit
+          </Button>
+          <Button className="delete-btn" onClick={() => deleteJob(job.id)}>
+            Delete
+          </Button>
+        </Col>
+      </Row>
+    </>
+  );
+};
+
+export default JobCard;
