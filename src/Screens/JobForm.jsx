@@ -2,20 +2,31 @@ import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
 
-const JobForm = ({ addJob }) => {
+const JobForm = ({ addJob, onSuccess }) => {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
   const [status, setStatus] = useState("");
 
-  const handleSubmit = () => {
-    const newJob = { id: Date.now(), company, role, status };
-    toast.success("Job added successfully ");
-    // console.log(newJob);
-    addJob(newJob);
-    setCompany("");
-    setRole("");
-    setStatus("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!company.trim() || !role.trim() || !status) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+
+    const newJob = { company, role, status };
+
+    const res = await addJob(newJob);
+
+    if (res) {
+      setCompany("");
+      setRole("");
+      setStatus("");
+      onSuccess();
+    }
   };
+
   return (
     <>
       <Row style={{ margin: "1rem", marginBottom: "3rem" }}>
