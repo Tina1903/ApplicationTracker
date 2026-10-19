@@ -35,7 +35,8 @@ const JobCard = ({ job, deleteJob, updateJobStatus, editJob }) => {
   };
 
   const handleStatusChange = (e) => {
-    updateJobStatus(job.id, e.target.value);
+    const newStatus = e.target.value;
+    updateJobStatus(job.id, newStatus);
   };
 
   return (
