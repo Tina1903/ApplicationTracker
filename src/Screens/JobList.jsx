@@ -1,7 +1,7 @@
 import React from "react";
 import JobCard from "./JobCard";
 
-const JobList = ({ jobs, deleteJob, updateJobStatus }) => {
+const JobList = ({ jobs, deleteJob, updateJobStatus, editJob }) => {
   return (
     <>
       {jobs?.map((job) => (
@@ -10,6 +10,7 @@ const JobList = ({ jobs, deleteJob, updateJobStatus }) => {
           job={job}
           deleteJob={deleteJob}
           updateJobStatus={updateJobStatus}
+          editJob={editJob}
         />
       ))}
     </>
