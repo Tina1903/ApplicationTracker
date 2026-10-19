@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 
-const JobCard = ({ job, deleteJob, updateJobStatus, editJob }) => {
+const JobCard = ({ job, deleteJob, editJob }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     company: job?.company || "",
@@ -32,11 +32,6 @@ const JobCard = ({ job, deleteJob, updateJobStatus, editJob }) => {
       status: job?.status || "Applied",
     });
     setIsEditing(false);
-  };
-
-  const handleStatusChange = (e) => {
-    const newStatus = e.target.value;
-    updateJobStatus(job.id, newStatus);
   };
 
   return (
