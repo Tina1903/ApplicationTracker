@@ -32,7 +32,8 @@ A clean and intuitive web application to track job applications, manage statuses
 <img src="https://github.com/user-attachments/assets/21214adf-64f2-4eac-8de0-d445e0def895" />
 
 ### 🖥️ Full View
-<img src="https://github.com/user-attachments/assets/3bc1e580-e090-40d3-b127-dc8e57a9ce84" />
+
+<img width="1474" height="987" alt="image" src="https://github.com/user-attachments/assets/2c726e83-7c3e-4bc0-85bf-80c163249e82" />
 
 
 
